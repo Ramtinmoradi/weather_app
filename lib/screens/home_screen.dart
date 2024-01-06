@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/widgets/search_box_widget.dart';
 
+import '/widgets/search_box_widget.dart';
+import '/widgets/weather_container_widget.dart';
 import '/constants/color.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,15 +11,19 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColor.backgroundColor,
-      body: SafeArea(
+      body: const SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             vertical: 12.0,
             horizontal: 16.0,
           ),
           child: Column(
             children: <Widget>[
               SearchBoxWidget(),
+              SizedBox(height: 32.0),
+              WeatherContainerWidget(),
+              SizedBox(height: 16.0),
+              WeatherContainerWidget(),
             ],
           ),
         ),
