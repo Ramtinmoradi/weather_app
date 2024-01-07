@@ -11,21 +11,30 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MainColor.backgroundColor,
-      body: const SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: 12.0,
-            horizontal: 16.0,
-          ),
-          child: Column(
-            children: <Widget>[
-              SearchBoxWidget(),
-              SizedBox(height: 32.0),
-              WeatherContainerWidget(),
-              SizedBox(height: 16.0),
-              WeatherContainerWidget(),
-            ],
-          ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width,
+              height: MediaQuery.sizeOf(context).height,
+              child: const Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 12.0,
+                  horizontal: 16.0,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      SearchBoxWidget(),
+                      SizedBox(height: 32.0),
+                      WeatherContainerWidget(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

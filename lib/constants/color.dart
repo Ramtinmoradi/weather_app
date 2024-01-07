@@ -71,4 +71,20 @@ class MainGradientColor {
       Color(0xffCFAEE3),
     ],
   );
+  static LinearGradient nightGradient = const LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: <Color>[
+      Color(0xff536976),
+      Color(0xff292E49),
+    ],
+  );
+  static LinearGradient dayGradient = const LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: <Color>[
+      Color(0xff00D2FF),
+      Color(0xff3A7BD5),
+    ],
+  );
 }

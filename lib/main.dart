@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:weather_app/bloc/weather/weather_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/constants/color.dart';
 
+import 'service/determine_position_service.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -11,9 +16,32 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: FutureBuilder(
+        future: determinePosition(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return BlocProvider<WeatherBloc>(
+              create: (context) => WeatherBloc()
+                ..add(
+                  FetchWeatherEvent(
+                    snapshot.data as Position,
+                  ),
+                ),
+              child: const HomeScreen(),
+            );
+          } else {
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(
+                  color: MainColor.searchBoxFontColor,
+                ),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }
